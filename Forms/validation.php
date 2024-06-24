@@ -48,4 +48,20 @@ function sanitize_input($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
+//The preg_match() function searches a string for pattern, returning true if the pattern exists, and false otherwise.
+$name = test_input($_POST["name"]);
+if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+    $nameErr = "Only letters and white space allowed";
+  }
+    $email = test_input($_POST["email"]);
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $emailErr = "Invalid email format";
+    }   
+    echo "Name: ".$name."<br>";
+    echo "Email: ".$email."<br>";
+    //filter_var() function filters a variable with the specified filter.
+    //In this case, the filter is FILTER_VALIDATE_EMAIL, which validates an e-mail address.
+    //If the data is a valid e-mail address, the function returns true, otherwise it returns false.
+    //The FILTER_SANITIZE_EMAIL filter removes all illegal characters from an e-mail address.
+    
 ?>
